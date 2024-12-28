@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Reserva de Consolas</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div id="menu-toggle" onclick="toggleMenu()">☰</div>
+    <div id="menu" class="hidden">
+        <button class="close" onclick="toggleMenu()">x</button>
+        <ul>
+            <li onclick="showSection('home')">Inicio</li>
+            <li onclick="showSection('reservas')">Reservas</li>
+            <li onclick="showSection('statusPublico')">Status Público</li>
+            <li onclick="showSection('statusPrivado')">Status Privado</li>
+        </ul>
+    </div>
+
+    <div id="home" class="section">
+        <h1>Bienvenidos a la Plataforma de Reservas</h1>
+        <p>Descripción sobre la ubicación y el servicio.</p>
+    </div>
+
+    <div id="reservas" class="section hidden">
+        <h2>Formulario de Reservas</h2>
+        <form id="reservation-form" onsubmit="submitReservation(event)">
+            <label for="name">Nombre:</label>
+            <input type="text" id="name" required>
+            <label for="consola">Consola:</label>
+            <select id="consola" required>
+                <option value="Xbox">Xbox</option>
+                <option value="PlayStation">PlayStation</option>
+                <option value="PC">PC</option>
+            </select>
+            <label for="hora">Hora:</label>
+            <input type="time" id="hora" required>
+            <button type="submit">Reservar</button>
+        </form>
+        <div id="reservation-message"></div>
+    </div>
+
+    <div id="statusPublico" class="section hidden">
+        <h2>Status Público</h2>
+        <div id="status-list">
+            <!-- Consolas mostrarán estado aquí -->
+        </div>
+    </div>
+
+    <div id="statusPrivado" class="section hidden">
+        <h2>Status Privado</h2>
+        <div>
+            <label for="password">Contraseña:</label>
+            <input type="password" id="password" required>
+            <button onclick="checkPassword()">Acceder</button>
+        </div>
+        <div id="admin-section" class="hidden">
+            <div id="console-status">
+                <!-- Consolas con selectores aquí -->
+            </div>
+            <div id="reservations-list">
+                <!-- Lista de reservas -->
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
