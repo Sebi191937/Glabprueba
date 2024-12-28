@@ -24,12 +24,32 @@ function submitReservation(event) {
     const name = document.getElementById('name').value;
     const consola = document.getElementById('consola').value;
     const hora = document.getElementById('hora').value;
-    
+
+    // Verificar si la consola ya está reservada en ese horario
+    const conflict = reservations.some(reservation =>
+        reservation.consola === consola && reservation.hora === hora
+    );
+
+    if (conflict) {
+        document.getElementById('reservation-message').textContent = 
+            'Error: Esta consola ya está reservada para este horario.';
+        return;
+    }
+
     const reservation = { name, consola, hora, date: new Date() };
     reservations.push(reservation);
     localStorage.setItem('reservations', JSON.stringify(reservations));
+
+    // Actualizar estado de la consola
+    const consoleIndex = consoles[consola].findIndex(status => status === 'Desocupada');
+    if (consoleIndex !== -1) {
+        consoles[consola][consoleIndex] = `Ocupada (${hora})`;
+        localStorage.setItem('consoles', JSON.stringify(consoles));
+    }
+
     displayReservations();
-    document.getElementById('reservation-message').textContent = 'Reserva realizada';
+    updatePublicStatus();
+    document.getElementById('reservation-message').textContent = 'Reserva realizada con éxito.';
 }
 
 function displayReservations() {
@@ -60,7 +80,7 @@ function loadConsoleStatus() {
         consoles[consoleType].forEach((status, index) => {
             const select = document.createElement('select');
             select.innerHTML = `<option value="Desocupada" ${status === 'Desocupada' ? 'selected' : ''}>Desocupada</option>
-                                <option value="Ocupada" ${status === 'Ocupada' ? 'selected' : ''}>Ocupada</option>`;
+                                <option value="Ocupada" ${status.startsWith('Ocupada') ? 'selected' : ''}>Ocupada</option>`;
             select.addEventListener('change', (e) => updateConsoleStatus(consoleType, index, e.target.value));
             const label = document.createElement('label');
             label.textContent = `${consoleType} ${index + 1}: `;
@@ -83,7 +103,7 @@ function updatePublicStatus() {
         consoles[consoleType].forEach((status, index) => {
             const div = document.createElement('div');
             div.textContent = `${consoleType} ${index + 1}: ${status}`;
-            div.className = `status ${status.toLowerCase()}`;
+            div.className = `status ${status.toLowerCase().includes('ocupada') ? 'ocupada' : 'desocupada'}`;
             statusList.appendChild(div);
         });
     });
