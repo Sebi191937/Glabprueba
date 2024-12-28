@@ -7,6 +7,17 @@ const consoles = {
 
 let reservations = JSON.parse(localStorage.getItem('reservations')) || [];
 
+// Función para eliminar reservas con más de una semana de antigüedad
+function cleanOldReservations() {
+    const oneWeekInMillis = 7 * 24 * 60 * 60 * 1000; // Una semana en milisegundos
+    const now = new Date();
+    reservations = reservations.filter(reservation => {
+        const reservationDate = new Date(reservation.date);
+        return now - reservationDate < oneWeekInMillis;
+    });
+    localStorage.setItem('reservations', JSON.stringify(reservations));
+}
+
 // Funciones de interacción
 function toggleMenu() {
     const menu = document.getElementById('menu');
@@ -111,6 +122,7 @@ function updatePublicStatus() {
 
 // Inicialización
 document.addEventListener('DOMContentLoaded', () => {
+    cleanOldReservations(); // Limpiar reservas antiguas al cargar la página
     updatePublicStatus();
     displayReservations();
 });
