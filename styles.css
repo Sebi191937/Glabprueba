@@ -76,8 +76,10 @@ h1, h2 {
 
 .status.desocupada {
     background-color: #28a745; /* Verde */
+    color: white;
 }
 
 .status.ocupada {
     background-color: #dc3545; /* Rojo */
+    color: white; 
 }
