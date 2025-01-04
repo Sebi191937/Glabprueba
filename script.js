@@ -121,11 +121,19 @@ function updatePublicStatus() {
         consoles[consoleType].forEach((status, index) => {
             const div = document.createElement('div');
             div.textContent = `${consoleType} ${index + 1}: ${status}`;
-            div.className = `status ${status.toLowerCase().includes('ocupada') ? 'ocupada' : 'desocupada'}`;
+            
+            // Cambiar la clase en función del estado
+            if (status === 'Desocupada') {
+                div.className = 'status desocupada'; // Estado verde
+            } else if (status === 'Ocupada') {
+                div.className = 'status ocupada'; // Estado rojo
+            }
+
             statusList.appendChild(div);
         });
     });
 }
+
 
 function loadConsoleStatus() {
     const consoleStatusDiv = document.getElementById('console-status');
