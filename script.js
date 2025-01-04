@@ -1,8 +1,15 @@
 // Variables globales
 const consoles = {
-    Xbox: Array(4).fill('Desocupada'),
-    PlayStation: Array(4).fill('Desocupada'),
-    PC: Array(2).fill('Desocupada')
+    "Xbox Series 1": Array(1).fill('Desocupada'),
+    "Xbox Series 2": Array(1).fill('Desocupada'),
+    "Xbox Series 3": Array(1).fill('Desocupada'),
+    "PlayStation 5 1": Array(1).fill('Desocupada'),
+    "PlayStation 5 2": Array(1).fill('Desocupada'),
+    "PlayStation 5 3": Array(1).fill('Desocupada'),
+    "Xbox Series X TV": Array(1).fill('Desocupada'),
+    "PlayStation 5 TV": Array(1).fill('Desocupada'),
+    "PC 2060": Array(1).fill('Desocupada'),
+    "PC 4060Ti": Array(1).fill('Desocupada')
 };
 
 let reservations = JSON.parse(localStorage.getItem('reservations')) || [];
@@ -110,7 +117,7 @@ function updateConsoleStatus(consoleType, index, status) {
 function updatePublicStatus() {
     const statusList = document.getElementById('status-list');
     statusList.innerHTML = '';
-    ['Xbox', 'PlayStation', 'PC'].forEach(consoleType => {
+    Object.keys(consoles).forEach(consoleType => {
         consoles[consoleType].forEach((status, index) => {
             const div = document.createElement('div');
             div.textContent = `${consoleType} ${index + 1}: ${status}`;
@@ -118,6 +125,29 @@ function updatePublicStatus() {
             statusList.appendChild(div);
         });
     });
+}
+
+function loadConsoleStatus() {
+    const consoleStatusDiv = document.getElementById('console-status');
+    consoleStatusDiv.innerHTML = '';
+    Object.keys(consoles).forEach(consoleType => {
+        consoles[consoleType].forEach((status, index) => {
+            const select = document.createElement('select');
+            select.innerHTML = `<option value="Desocupada" ${status === 'Desocupada' ? 'selected' : ''}>Desocupada</option>
+                                <option value="Ocupada" ${status.startsWith('Ocupada') ? 'selected' : ''}>Ocupada</option>`;
+            select.addEventListener('change', (e) => updateConsoleStatus(consoleType, index, e.target.value));
+            const label = document.createElement('label');
+            label.textContent = `${consoleType} ${index + 1}: `;
+            consoleStatusDiv.appendChild(label);
+            consoleStatusDiv.appendChild(select);
+        });
+    });
+}
+
+function updateConsoleStatus(consoleType, index, status) {
+    consoles[consoleType][index] = status;
+    localStorage.setItem('consoles', JSON.stringify(consoles));
+    updatePublicStatus();
 }
 
 // Inicialización
