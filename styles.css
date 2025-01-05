@@ -8,6 +8,39 @@ body {
     transition: background-color 0.3s ease;
 }
 
+/* Header con banner y logo */
+#header {
+    position: relative;
+    width: 100%;
+    background-color: #333; /* Fondo del header */
+    padding: 10px 0;
+    text-align: center;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.3);
+}
+
+#banner {
+    width: 100%;
+    height: 150px; /* Ajusta la altura del banner */
+    background-color: #1a1a1a; /* Fondo del banner */
+    margin-bottom: 10px;
+    background-image: url('banner.jpg'); /* Puedes poner tu propia imagen de banner */
+    background-size: cover;
+    background-position: center;
+}
+
+#logo {
+    position: absolute;
+    left: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 100px; /* Ajusta el tamaño del logo */
+}
+
+#logo img {
+    width: 100%;
+    height: auto;
+}
+
 /* Menú lateral */
 #menu {
     position: absolute;
@@ -16,9 +49,9 @@ body {
     width: 250px;
     background-color: #2b2b2b; /* Fondo del menú */
     padding: 30px;
-    display: none;
+    display: none; /* Menú oculto inicialmente */
     box-shadow: 4px 0px 10px rgba(0, 0, 0, 0.5);
-    transform: translateX(-100%);
+    transform: translateX(-100%); /* Menú fuera de la vista */
     transition: transform 0.3s ease-in-out;
 }
 
@@ -57,6 +90,11 @@ body {
 
 #menu-toggle:hover {
     background-color: #d81b60;
+}
+
+/* Agregar la clase show para abrir el menú */
+#menu.show {
+    transform: translateX(0); /* Mover el menú a la vista */
 }
 
 /* Formulario y inputs */
@@ -137,11 +175,6 @@ h1, h2 {
 
 .hidden {
     display: none;
-}
-
-/* Animación para mostrar el menú */
-#menu.show {
-    transform: translateX(0);
 }
 
 /* Diseño responsivo */
