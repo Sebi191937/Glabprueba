@@ -1,234 +1,115 @@
-/* Estilos generales */
 body {
-    font-family: 'Arial', sans-serif;
+    font-family: Arial, sans-serif;
     margin: 0;
     padding: 0;
-    background-color: #181818; /* Fondo oscuro */
+    background-color: #222;
     color: #fff;
-    transition: background-color 0.3s ease;
 }
 
-/* Header con banner y logo */
-#header {
-    position: relative;
-    width: 100%;
-    background-color: #333; /* Fondo del header */
-    padding: 10px 0;
-    text-align: center;
-    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.3);
-}
-
-#banner {
-    width: 100%;
-    height: 150px; /* Ajusta la altura del banner */
-    background-color: #1a1a1a; /* Fondo del banner */
-    margin-bottom: 10px;
-    background-image: url('banner.jpg'); /* Puedes poner tu propia imagen de banner */
-    background-size: cover;
-    background-position: center;
-}
-
-#logo {
-    position: absolute;
-    left: 10px;
-    top: 50%;
-    transform: translateY(-50%);
-    width: 100px; /* Ajusta el tamaño del logo */
-}
-
-#logo img {
-    width: 100%;
-    height: auto;
-}
-
-/* Menú lateral */
 #menu {
     position: absolute;
     top: 0;
     left: 0;
-    width: 250px;
-    background-color: #2b2b2b; /* Fondo del menú */
-    padding: 30px;
-    display: none; /* Menú oculto inicialmente */
-    box-shadow: 4px 0px 10px rgba(0, 0, 0, 0.5);
-    transform: translateX(-100%); /* Menú fuera de la vista */
-    transition: transform 0.3s ease-in-out;
+    width: 200px;
+    background-color: #333;
+    padding: 20px;
+    display: none;
+    box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.6); /* Sombra para el menú */
+    border-radius: 8px;
+    transition: all 0.3s ease; /* Animación suave en el menú */
 }
 
-/* Menú de lista */
 #menu ul {
     list-style: none;
     padding: 0;
-    margin: 0;
 }
 
 #menu ul li {
-    padding: 12px;
+    padding: 10px;
     cursor: pointer;
-    border-radius: 5px;
-    margin: 5px 0;
-    transition: background-color 0.3s ease, transform 0.2s ease;
-    color: #fff;
+    transition: background-color 0.3s ease; /* Animación de color de fondo */
 }
 
 #menu ul li:hover {
-    background-color: #ff4d4d; /* Rojo brillante en hover */
-    transform: translateX(10px);
-}
-
-/* Botón de menú */
-#menu-toggle {
-    font-size: 30px;
-    cursor: pointer;
-    padding: 20px;
-    background-color: #e91e63; /* Rojo-rosa */
-    border: none;
-    color: white;
-    border-radius: 5px;
-    transition: background-color 0.3s ease;
-}
-
-#menu-toggle:hover {
-    background-color: #d81b60;
-}
-
-/* Agregar la clase show para abrir el menú */
-#menu.show {
-    transform: translateX(0); /* Mover el menú a la vista */
-}
-
-/* Formulario y inputs */
-button {
-    background-color: #ff5722; /* Naranja rojo */
-    border: none;
-    padding: 12px 18px;
-    cursor: pointer;
-    color: white;
-    border-radius: 5px;
-    transition: background-color 0.3s ease, transform 0.2s ease;
-}
-
-button:hover {
-    background-color: #e64a19; /* Rojo fuerte */
-    transform: scale(1.05);
-}
-
-input, select {
-    margin: 12px 0;
-    padding: 10px;
-    width: 100%;
-    background-color: #333;
-    border: 1px solid #555;
-    color: white;
-    border-radius: 5px;
-    transition: background-color 0.3s ease;
-}
-
-input:focus, select:focus {
-    background-color: #444;
-    outline: none;
-}
-
-/* Sección principal */
-.section {
-    padding: 30px;
-    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.3);
-    margin-top: 20px;
-}
-
-/* Títulos */
-h1, h2 {
-    color: #ff1744; /* Rojo neón */
-    text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.7);
-}
-
-/* Estado de las consolas */
-#status-list div {
-    margin: 12px 0;
-    transition: transform 0.3s ease, background-color 0.3s ease;
-}
-
-.status {
-    padding: 15px;
-    margin: 8px 0;
-    border-radius: 5px;
-    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.4);
-    transition: transform 0.2s ease;
-}
-
-.status:hover {
-    transform: scale(1.05);
-}
-
-/* Estados */
-.status.desocupada {
-    background-color: #76ff03; /* Verde neon */
-    color: white;
-    box-shadow: 0 0 10px rgba(118, 255, 3, 0.5);
-}
-
-.status.ocupada {
-    background-color: #d32f2f; /* Rojo oscuro */
-    color: white;
-    box-shadow: 0 0 10px rgba(211, 47, 47, 0.5);
+    background-color: #900; /* Rojo intenso al pasar el ratón */
+    box-shadow: 2px 2px 6px rgba(255, 0, 0, 0.6); /* Sombra en el hover */
 }
 
 .hidden {
     display: none;
 }
 
-/* Diseño responsivo */
-@media (max-width: 768px) {
-    /* Ajuste del menú */
-    #menu {
-        width: 100%;
-        padding: 20px;
-        box-shadow: none;
-        transform: translateX(-100%);
-    }
-
-    /* Botón de menú */
-    #menu-toggle {
-        font-size: 28px;
-        padding: 15px;
-    }
-
-    /* Sección principal */
-    .section {
-        padding: 20px;
-    }
-
-    /* Títulos */
-    h1, h2 {
-        font-size: 24px;
-        text-align: center;
-    }
-
-    /* Ajuste en botones y formularios */
-    input, select, button {
-        width: 100%;
-        padding: 12px;
-        font-size: 16px;
-    }
-
-    /* Estado de las consolas */
-    .status {
-        padding: 12px;
-        font-size: 14px;
-    }
+#menu-toggle {
+    font-size: 30px;
+    cursor: pointer;
+    padding: 20px;
+    transition: transform 0.3s ease; /* Animación de la transición del botón */
 }
 
-@media (max-width: 480px) {
-    /* Ajustes para dispositivos muy pequeños */
-    h1, h2 {
-        font-size: 22px;
-    }
+#menu-toggle:hover {
+    transform: rotate(90deg); /* Rota el botón al pasar el ratón */
+}
 
-    #menu ul li {
-        padding: 10px;
-    }
+button {
+    background-color: #dc3545; /* Rojo */
+    border: none;
+    padding: 10px;
+    cursor: pointer;
+    border-radius: 5px;
+    box-shadow: 2px 2px 8px rgba(0, 0, 0, 0.5); /* Sombra en los botones */
+    transition: background-color 0.3s ease, box-shadow 0.3s ease; /* Animaciones suaves */
+}
 
-    button {
-        padding: 10px 15px;
-    }
+button:hover {
+    background-color: #c82333; /* Rojo más oscuro */
+    box-shadow: 4px 4px 12px rgba(0, 0, 0, 0.7); /* Sombra más intensa */
+}
+
+input, select {
+    margin: 10px 0;
+    padding: 8px;
+    width: 100%;
+    border: 2px solid #ccc;
+    border-radius: 4px;
+    transition: border-color 0.3s ease; /* Animación de borde */
+}
+
+input:focus, select:focus {
+    border-color: #dc3545; /* Borde rojo al enfocarse */
+    box-shadow: 0 0 5px rgba(220, 53, 69, 0.6); /* Sombra roja al enfocarse */
+}
+
+.section {
+    padding: 20px;
+}
+
+h1, h2 {
+    color: #ff0000; /* Rojo neón */
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5); /* Sombra en los encabezados */
+}
+
+#status-list div {
+    margin: 10px;
+}
+
+.status {
+    padding: 10px;
+    margin: 5px;
+    border-radius: 5px;
+    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3); /* Sombra en los estados */
+    transition: background-color 0.3s ease, transform 0.2s ease; /* Animación en el fondo */
+}
+
+.status:hover {
+    transform: scale(1.05); /* Efecto de zoom al pasar el ratón */
+}
+
+.status.desocupada {
+    background-color: #28a745; /* Verde */
+    color: white;
+}
+
+.status.ocupada {
+    background-color: #dc3545; /* Rojo */
+    color: white; 
 }
