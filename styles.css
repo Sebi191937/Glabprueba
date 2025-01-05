@@ -13,8 +13,8 @@ body {
     width: 200px;
     background-color: #333;
     padding: 20px;
-    display: none; /* Menú oculto por defecto */
-    box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.6); /* Sombra para el menú */
+    display: none;
+    box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.6);
     border-radius: 8px;
 }
 
@@ -26,12 +26,12 @@ body {
 #menu ul li {
     padding: 10px;
     cursor: pointer;
-    transition: background-color 0.3s ease; /* Animación de color de fondo */
+    transition: background-color 0.3s ease;
 }
 
 #menu ul li:hover {
-    background-color: #900; /* Rojo intenso al pasar el ratón */
-    box-shadow: 2px 2px 6px rgba(255, 0, 0, 0.6); /* Sombra en el hover */
+    background-color: #900;
+    box-shadow: 2px 2px 6px rgba(255, 0, 0, 0.6);
 }
 
 .hidden {
@@ -42,26 +42,26 @@ body {
     font-size: 30px;
     cursor: pointer;
     padding: 20px;
-    transition: transform 0.3s ease; /* Animación de la transición del botón */
+    transition: transform 0.3s ease;
 }
 
 #menu-toggle:hover {
-    transform: rotate(90deg); /* Rota el botón al pasar el ratón */
+    transform: rotate(90deg);
 }
 
 button {
-    background-color: #dc3545; /* Rojo */
+    background-color: #dc3545;
     border: none;
     padding: 10px;
     cursor: pointer;
     border-radius: 5px;
-    box-shadow: 2px 2px 8px rgba(0, 0, 0, 0.5); /* Sombra en los botones */
-    transition: background-color 0.3s ease, box-shadow 0.3s ease; /* Animaciones suaves */
+    box-shadow: 2px 2px 8px rgba(0, 0, 0, 0.5);
+    transition: background-color 0.3s ease, box-shadow 0.3s ease;
 }
 
 button:hover {
-    background-color: #c82333; /* Rojo más oscuro */
-    box-shadow: 4px 4px 12px rgba(0, 0, 0, 0.7); /* Sombra más intensa */
+    background-color: #c82333;
+    box-shadow: 4px 4px 12px rgba(0, 0, 0, 0.7);
 }
 
 input, select {
@@ -70,12 +70,12 @@ input, select {
     width: 100%;
     border: 2px solid #ccc;
     border-radius: 4px;
-    transition: border-color 0.3s ease; /* Animación de borde */
+    transition: border-color 0.3s ease;
 }
 
 input:focus, select:focus {
-    border-color: #dc3545; /* Borde rojo al enfocarse */
-    box-shadow: 0 0 5px rgba(220, 53, 69, 0.6); /* Sombra roja al enfocarse */
+    border-color: #dc3545;
+    box-shadow: 0 0 5px rgba(220, 53, 69, 0.6);
 }
 
 .section {
@@ -83,8 +83,8 @@ input:focus, select:focus {
 }
 
 h1, h2 {
-    color: #ff0000; /* Rojo neón */
-    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5); /* Sombra en los encabezados */
+    color: #ff0000;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
 }
 
 #status-list div {
@@ -95,20 +95,20 @@ h1, h2 {
     padding: 10px;
     margin: 5px;
     border-radius: 5px;
-    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3); /* Sombra en los estados */
-    transition: background-color 0.3s ease, transform 0.2s ease; /* Animación en el fondo */
+    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
+    transition: background-color 0.3s ease, transform 0.2s ease;
 }
 
 .status:hover {
-    transform: scale(1.05); /* Efecto de zoom al pasar el ratón */
+    transform: scale(1.05);
 }
 
 .status.desocupada {
-    background-color: #28a745; /* Verde */
+    background-color: #28a745;
     color: white;
 }
 
 .status.ocupada {
-    background-color: #dc3545; /* Rojo */
-    color: white; 
+    background-color: #dc3545;
+    color: white;
 }
