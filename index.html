@@ -36,6 +36,27 @@
         <img src="https://maps.googleapis.com/maps/api/staticmap?center=19.4498013,-99.1875267&zoom=17&size=400x300&markers=color:red|19.4498013,-99.1875267" alt="G LAB Arcade Room">
     </div>
 
+    <div id="imagenes" class="section hidden">
+        <h2>Imágenes del G LAB Arcade Room</h2>
+        <div id="image-gallery">
+            <!-- Aquí se mostrarán las imágenes cargadas -->
+        </div>
+        <h3>Acceso solo para administradores</h3>
+        <div>
+            <label for="admin-password">Contraseña de administrador:</label>
+            <input type="password" id="admin-password" required>
+            <button onclick="verifyPassword()">Acceder</button>
+        </div>
+        <div id="image-upload-section" class="hidden">
+            <h3>Subir Imágenes</h3>
+            <form id="image-upload-form">
+                <label for="images">Seleccionar hasta 10 imágenes:</label>
+                <input type="file" id="images" name="images" accept="image/*" multiple>
+                <button type="button" onclick="displayImages()">Subir</button>
+            </form>
+        </div>
+    </div>
+
     <div id="reservas" class="section hidden">
         <h2>Formulario de Reservas</h2>
         <form id="reservation-form" onsubmit="submitReservation(event)">
@@ -85,35 +106,67 @@
         </div>
     </div>
 
-    <!-- Nueva sección para imágenes -->
-    <div id="imagenes" class="section hidden">
-        <h2>Galería de Imágenes</h2>
-        <p>Explora las mejores imágenes de G lab-arcade room:</p>
-        <div id="image-gallery">
-            <img src="ruta-de-la-imagen-1.jpg" alt="Imagen 1">
-            <img src="ruta-de-la-imagen-2.jpg" alt="Imagen 2">
-            <img src="ruta-de-la-imagen-3.jpg" alt="Imagen 3">
-            <img src="ruta-de-la-imagen-4.jpg" alt="Imagen 4">
-            <img src="ruta-de-la-imagen-5.jpg" alt="Imagen 5">
-            <img src="ruta-de-la-imagen-6.jpg" alt="Imagen 6">
-            <img src="ruta-de-la-imagen-7.jpg" alt="Imagen 7">
-            <img src="ruta-de-la-imagen-8.jpg" alt="Imagen 8">
-            <img src="ruta-de-la-imagen-9.jpg" alt="Imagen 9">
-            <img src="ruta-de-la-imagen-10.jpg" alt="Imagen 10">
-        </div>
-    </div>
-
     <script>
+        const correctPassword = "tuContraseña"; // Reemplaza con tu contraseña
+
+        // Mostrar imágenes (Público)
+        function displayPublicImages() {
+            const imageGallery = document.getElementById('image-gallery');
+            const images = JSON.parse(localStorage.getItem('images')) || [];
+            imageGallery.innerHTML = ''; // Limpiar la galería antes de mostrar
+            images.forEach(image => {
+                const img = document.createElement('img');
+                img.src = image;
+                img.style.maxWidth = '100px';
+                img.style.margin = '5px';
+                imageGallery.appendChild(img);
+            });
+        }
+
+        // Verificar contraseña para acceder a la carga de imágenes
+        function verifyPassword() {
+            const password = document.getElementById('admin-password').value;
+            if (password === correctPassword) {
+                document.getElementById('image-upload-section').classList.remove('hidden');
+            } else {
+                alert("Contraseña incorrecta. Acceso denegado.");
+            }
+        }
+
+        // Cargar imágenes en el sistema (solo accesible por el administrador)
+        function displayImages() {
+            const files = document.getElementById('images').files;
+            if (files.length > 10) {
+                alert("Solo puedes subir hasta 10 imágenes.");
+                return;
+            }
+            const reader = new FileReader();
+            reader.onload = function (e) {
+                const imageArray = JSON.parse(localStorage.getItem('images')) || [];
+                imageArray.push(e.target.result);
+                localStorage.setItem('images', JSON.stringify(imageArray));
+                displayPublicImages(); // Actualizar la galería pública
+            };
+            reader.readAsDataURL(files[0]);
+        }
+
+        // Función para manejar la visualización de secciones
         function toggleMenu() {
             const menu = document.getElementById('menu');
             menu.classList.toggle('hidden');
         }
 
+        // Cambiar de secciones
         function showSection(sectionId) {
-            const sections = document.querySelectorAll('.section');
-            sections.forEach(section => section.classList.add('hidden'));
+            document.querySelectorAll('.section').forEach(section => {
+                section.classList.add('hidden');
+            });
             document.getElementById(sectionId).classList.remove('hidden');
+            toggleMenu();
         }
+
+        // Cargar imágenes al cargar la página
+        window.onload = displayPublicImages;
     </script>
 </body>
 </html>
