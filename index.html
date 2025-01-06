@@ -16,7 +16,6 @@
             <li onclick="showSection('statusPublico')">Status Público</li>
             <li onclick="showSection('statusPrivado')">Status Privado</li>
             <li onclick="showSection('ubicacion')">Ubicación</li>
-            <li onclick="showSection('imagenes')">Imágenes</li>
         </ul>
     </div>
 
@@ -28,22 +27,6 @@
         <button onclick="window.location.href='https://www.tiktok.com/@g.lab_mx?_t=ZM-8soz5kQza7C&_r=1'">TikTok</button>
     </div>
 
-    <!-- Nueva sección de Imágenes -->
-    <div id="imagenes" class="section hidden">
-        <h2>Galería de Imágenes</h2>
-        <p>A continuación, puedes ver las mejores imágenes del G lab-arcade room.</p>
-        <div id="image-gallery">
-            <!-- Imágenes agregadas desde el código -->
-            <img src="ruta-de-la-imagen-1.jpg" alt="Descripción de la imagen 1">
-            <img src="ruta-de-la-imagen-2.jpg" alt="Descripción de la imagen 2">
-            <img src="ruta-de-la-imagen-3.jpg" alt="Descripción de la imagen 3">
-            <img src="ruta-de-la-imagen-4.jpg" alt="Descripción de la imagen 3">
-            <img src="ruta-de-la-imagen-5.jpg" alt="Descripción de la imagen 3">
-            <img src="ruta-de-la-imagen-6.jpg" alt="Descripción de la imagen 3">
-        </div>
-        <p style="font-size: small; color: gray;">*Las imágenes solo pueden ser modificadas por el administrador desde el código.</p>
-    </div>
-
     <div id="ubicacion" class="section hidden">
         <h2>Ubicación del G LAB Arcade Room</h2>
         <p>Visítanos en la siguiente dirección:</p>
@@ -52,17 +35,55 @@
         <img src="https://maps.googleapis.com/maps/api/staticmap?center=19.4498013,-99.1875267&zoom=17&size=400x300&markers=color:red|19.4498013,-99.1875267" alt="G LAB Arcade Room">
     </div>
 
-    <script>
-        function toggleMenu() {
-            const menu = document.getElementById('menu');
-            menu.classList.toggle('hidden');
-        }
+    <div id="reservas" class="section hidden">
+        <h2>Formulario de Reservas</h2>
+        <form id="reservation-form" onsubmit="submitReservation(event)">
+            <label for="name">Nombre:</label>
+            <input type="text" id="name" required>
+            <label for="consola">Consola:</label>
+            <select id="consola" required>
+                <option value="Xbox Series ">Xbox Series 1</option>
+                <option value="Xbox Series ">Xbox Series 2</option>
+                <option value="Xbox Series ">Xbox Series 3</option>
+                <option value="PlayStation 5 ">PlayStation 5 1</option>
+                <option value="PlayStation 5 ">PlayStation 5 2</option>
+                <option value="PlayStation 5 ">PlayStation 5 3</option>
+                <option value="Xbox Series X TV">Xbox Series X TV</option>
+                <option value="PlayStation 5 TV">PlayStation 5 TV</option>
+                <option value="PC 2060">PC 2060</option>
+                <option value="PC 4060Ti">PC 4060Ti</option>
+            </select>
+            <label for="hora">Hora:</label>
+            <input type="time" id="hora" required>
+            <button type="submit">Reservar</button>
+        </form>
+        <div id="reservation-message"></div>
+    </div>
 
-        function showSection(sectionId) {
-            const sections = document.querySelectorAll('.section');
-            sections.forEach(section => section.classList.add('hidden'));
-            document.getElementById(sectionId).classList.remove('hidden');
-        }
-    </script>
+    <div id="statusPublico" class="section hidden">
+        <h2>Status Público</h2>
+        <div id="status-list">
+            <!-- Consolas mostrarán estado aquí -->
+        </div>
+    </div>
+
+    <div id="statusPrivado" class="section hidden">
+        <h2>Status Privado</h2>
+        <div>
+            <label for="password">Contraseña:</label>
+            <input type="password" id="password" required>
+            <button onclick="checkPassword()">Acceder</button>
+        </div>
+        <div id="admin-section" class="hidden">
+            <div id="console-status">
+                <!-- Consolas con selectores aquí -->
+            </div>
+            <div id="reservations-list">
+                <!-- Lista de reservas -->
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
 </body>
 </html>
