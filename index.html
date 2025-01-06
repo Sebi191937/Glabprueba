@@ -16,7 +16,6 @@
             <li onclick="showSection('statusPublico')">Status Público</li>
             <li onclick="showSection('statusPrivado')">Status Privado</li>
             <li onclick="showSection('ubicacion')">Ubicación</li>
-            <li onclick="showSection('imagenes')">Imágenes</li>
         </ul>
     </div>
 
@@ -34,27 +33,6 @@
         <p><strong>Dirección:</strong> G LAB Arcade Room, Calle Ficticia 123, Ciudad, Estado</p>
         <p><strong>Ubicación en Google Maps:</strong> <a href="https://www.google.com.mx/maps/place/G+LAB+Arcade+Room/@19.4498013,-99.1875267,17z/data=!3m1!4b1!4m6!3m5!1s0x85d1f97a8c053d4b:0x90cea12c8a66a96a!8m2!3d19.4497963!4d-99.1849518!16s%2Fg%2F11y4yr2_8c?entry=ttu&g_ep=EgoyMDI0MTIxMS4wIKXMDSoASAFQAw%3D%3D" target="_blank">Ver en Google Maps</a></p>
         <img src="https://maps.googleapis.com/maps/api/staticmap?center=19.4498013,-99.1875267&zoom=17&size=400x300&markers=color:red|19.4498013,-99.1875267" alt="G LAB Arcade Room">
-    </div>
-
-    <div id="imagenes" class="section hidden">
-        <h2>Imágenes del G LAB Arcade Room</h2>
-        <div id="image-gallery">
-            <!-- Aquí se mostrarán las imágenes cargadas -->
-        </div>
-        <h3>Acceso solo para administradores</h3>
-        <div>
-            <label for="admin-password">Contraseña de administrador:</label>
-            <input type="password" id="admin-password" required>
-            <button onclick="verifyPassword()">Acceder</button>
-        </div>
-        <div id="image-upload-section" class="hidden">
-            <h3>Subir Imágenes</h3>
-            <form id="image-upload-form">
-                <label for="images">Seleccionar hasta 10 imágenes:</label>
-                <input type="file" id="images" name="images" accept="image/*" multiple>
-                <button type="button" onclick="displayImages()">Subir</button>
-            </form>
-        </div>
     </div>
 
     <div id="reservas" class="section hidden">
@@ -106,67 +84,6 @@
         </div>
     </div>
 
-    <script>
-        const correctPassword = "tuContraseña"; // Reemplaza con tu contraseña
-
-        // Mostrar imágenes (Público)
-        function displayPublicImages() {
-            const imageGallery = document.getElementById('image-gallery');
-            const images = JSON.parse(localStorage.getItem('images')) || [];
-            imageGallery.innerHTML = ''; // Limpiar la galería antes de mostrar
-            images.forEach(image => {
-                const img = document.createElement('img');
-                img.src = image;
-                img.style.maxWidth = '100px';
-                img.style.margin = '5px';
-                imageGallery.appendChild(img);
-            });
-        }
-
-        // Verificar contraseña para acceder a la carga de imágenes
-        function verifyPassword() {
-            const password = document.getElementById('admin-password').value;
-            if (password === correctPassword) {
-                document.getElementById('image-upload-section').classList.remove('hidden');
-            } else {
-                alert("Contraseña incorrecta. Acceso denegado.");
-            }
-        }
-
-        // Cargar imágenes en el sistema (solo accesible por el administrador)
-        function displayImages() {
-            const files = document.getElementById('images').files;
-            if (files.length > 10) {
-                alert("Solo puedes subir hasta 10 imágenes.");
-                return;
-            }
-            const reader = new FileReader();
-            reader.onload = function (e) {
-                const imageArray = JSON.parse(localStorage.getItem('images')) || [];
-                imageArray.push(e.target.result);
-                localStorage.setItem('images', JSON.stringify(imageArray));
-                displayPublicImages(); // Actualizar la galería pública
-            };
-            reader.readAsDataURL(files[0]);
-        }
-
-        // Función para manejar la visualización de secciones
-        function toggleMenu() {
-            const menu = document.getElementById('menu');
-            menu.classList.toggle('hidden');
-        }
-
-        // Cambiar de secciones
-        function showSection(sectionId) {
-            document.querySelectorAll('.section').forEach(section => {
-                section.classList.add('hidden');
-            });
-            document.getElementById(sectionId).classList.remove('hidden');
-            toggleMenu();
-        }
-
-        // Cargar imágenes al cargar la página
-        window.onload = displayPublicImages;
-    </script>
+    <script src="script.js"></script>
 </body>
 </html>
