@@ -1,51 +1,21 @@
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
-
 body {
     font-family: Arial, sans-serif;
-    line-height: 1.6;
-    background-color: #111;
+    margin: 0;
+    padding: 0;
+    background-color: #222;
     color: #fff;
-    padding: 20px;
-}
-
-h1, h2 {
-    text-align: center;
-    color: #00ff00;
-}
-
-button {
-    background-color: #00ff00;
-    border: none;
-    padding: 10px 20px;
-    color: #111;
-    cursor: pointer;
-    font-size: 16px;
-}
-
-button:hover {
-    background-color: #00cc00;
-}
-
-.hidden {
-    display: none;
 }
 
 #menu {
     position: absolute;
     top: 0;
     left: 0;
-    background-color: rgba(0, 0, 0, 0.8);
-    width: 100%;
-    height: 100%;
+    width: 200px;
+    background-color: #333;
+    padding: 20px;
     display: none;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    z-index: 10;
+    box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.6);
+    border-radius: 8px;
 }
 
 #menu ul {
@@ -53,124 +23,92 @@ button:hover {
     padding: 0;
 }
 
-#menu li {
-    margin: 15px;
+#menu ul li {
+    padding: 10px;
     cursor: pointer;
+    transition: background-color 0.3s ease;
 }
 
-#menu li:hover {
-    color: #00ff00;
+#menu ul li:hover {
+    background-color: #900;
+    box-shadow: 2px 2px 6px rgba(255, 0, 0, 0.6);
+}
+
+.hidden {
+    display: none;
 }
 
 #menu-toggle {
     font-size: 30px;
     cursor: pointer;
-    position: absolute;
-    top: 20px;
-    left: 20px;
+    padding: 20px;
+    transition: transform 0.3s ease;
 }
 
-#menu .close {
-    position: absolute;
-    top: 20px;
-    right: 20px;
-    background-color: #000;
-    color: #fff;
-    font-size: 25px;
+#menu-toggle:hover {
+    transform: rotate(90deg);
+}
+
+button {
+    background-color: #dc3545;
     border: none;
+    padding: 10px;
     cursor: pointer;
+    border-radius: 5px;
+    box-shadow: 2px 2px 8px rgba(0, 0, 0, 0.5);
+    transition: background-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+button:hover {
+    background-color: #c82333;
+    box-shadow: 4px 4px 12px rgba(0, 0, 0, 0.7);
+}
+
+input, select {
+    margin: 10px 0;
+    padding: 8px;
+    width: 100%;
+    border: 2px solid #ccc;
+    border-radius: 4px;
+    transition: border-color 0.3s ease;
+}
+
+input:focus, select:focus {
+    border-color: #dc3545;
+    box-shadow: 0 0 5px rgba(220, 53, 69, 0.6);
 }
 
 .section {
-    display: none;
+    padding: 20px;
 }
 
-#home {
-    text-align: center;
+h1, h2 {
+    color: #ff0000;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
 }
 
-#home button {
-    margin-top: 20px;
-}
-
-#reservas form {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-}
-
-#reservas input,
-#reservas select {
+#status-list div {
     margin: 10px;
+}
+
+.status {
     padding: 10px;
-    width: 200px;
+    margin: 5px;
+    border-radius: 5px;
+    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
+    transition: background-color 0.3s ease, transform 0.2s ease;
 }
 
-#reservas button {
-    width: 220px;
+.status:hover {
+    transform: scale(1.05);
 }
 
-#status-list {
-    display: flex;
-    justify-content: space-around;
-    flex-wrap: wrap;
+.status.desocupada {
+    background-color: #28a745;
+    color: white;
 }
 
-#statusPublico, #statusPrivado, #ubicacion {
-    margin-top: 30px;
-}
-
-#precios {
-    margin-top: 30px;
-    text-align: center;
-}
-
-.imagenes-precios {
-    display: flex;
-    justify-content: center;
-    gap: 20px;
-    flex-wrap: wrap;
-    max-width: 80%;
-    margin: 0 auto;
-}
-
-.precio-img {
-    width: 150px;
-    height: 150px;
-    object-fit: cover;
-    border-radius: 10px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
-}
-
-@media (max-width: 768px) {
-    .imagenes-precios {
-        max-width: 100%;
-        gap: 10px;
-    }
-
-    .precio-img {
-        width: 120px;
-        height: 120px;
-    }
-
-    #menu ul {
-        padding: 0;
-    }
-
-    #reservas input,
-    #reservas select,
-    #reservas button {
-        width: 100%;
-    }
-}
-
-@media (max-width: 480px) {
-    .precio-img {
-        width: 100px;
-        height: 100px;
-    }
-
-    #menu-toggle {
-        font-size: 25px;
-    }
+.status.ocupada {
+    background-color: #dc3545;
+    color: white;
 }
