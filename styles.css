@@ -180,7 +180,12 @@ form button {
         width: 90%;
     }
 
+    .price-gallery {
+        flex-direction: column;
+    }
+
     .price-gallery img {
-        width: calc(100% - 10px);
+        width: 100%;
+        max-width: 300px;
     }
 }
